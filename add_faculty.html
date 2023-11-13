@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Faculty Form</title>
+    <link rel="stylesheet" href="form.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+    <form id="facultyForm">
+        <label for="facultyName">Faculty Name:</label>
+        <input type="text" id="facultyName" name="facultyName" required><br>
+
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" required><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br>
+
+        <label for="officeLocation">Office Location:</label>
+        <input type="text" id="officeLocation" name="officeLocation" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" onclick="submitForm()" value="Signup">
+        <!-- <button type="button" onclick="submitForm()">Submit</button> -->
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        function submitForm() {
+            $.ajax({
+                type: "POST",
+                url: "add_faculty.php",
+                data: $("#facultyForm").serialize(),
+                success: function (response) {
+                    $("#output").html(response);
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
